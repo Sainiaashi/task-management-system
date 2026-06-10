@@ -23,7 +23,9 @@ public class TaskService
                  .getName();
 
     User currentuser= userrepo.findByEmail(email);
-    Task task=taskrepo.findById(id).orElseThrow();
+    Task task=taskrepo.findById(id).orElseThrow(
+        ()->new TaskNotFoundException ("task not found")
+    );
     if(!task.getUser().getId().equals(currentuser.getId()))
     {
         throw new RuntimeException("Access denied");

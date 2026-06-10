@@ -51,9 +51,8 @@ public String register(@RequestBody RegisterRequest res) {
     String email=lo.getEmail();
     String password=lo.getPassword();
     User user=new User();
-    user=userRepository.findByEmail(email);
-    if(user!=null)
-    {
+    user=userRepository.findByEmail(email).orELseThrow(()->new UserNotFoundException("user not found"));
+    
         boolean passmatch=passwordEncoder.matches(password,user.getPassword());
         if(passmatch)
         {
@@ -61,12 +60,8 @@ public String register(@RequestBody RegisterRequest res) {
             return token;
         }
         else{
-            return "wong passwaord";
+            return throw new Exception("INVALID_PASSWORD");
         }
-    }
-    else{
-        return "user not found";
-    }
    } 
 
    @GetMapping("/getemail")
