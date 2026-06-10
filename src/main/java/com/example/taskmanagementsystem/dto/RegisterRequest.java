@@ -1,10 +1,20 @@
 package com.example.taskmanagementsystem.dto;
 import com.example.taskmanagementsystem.entity.Role;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 public class RegisterRequest
 {
+    @NotBlank(message="Name not be empty")
     private String name;
+
+    @Email(message="invalid email format")
+    @NotBlank(message="email not be empty")
     private String email;
+
+    @Size(min=6,message="must be of 6 character")
     private String password;
+    
     private Role role;
     public RegisterRequest(){}
     public String getName()

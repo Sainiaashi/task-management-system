@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.taskmanagementsystem.security.JwtService;
 import com.example.taskmanagementsystem.exception.UserNotFoundException;
 import com.example.taskmanagementsystem.exception.TaskNotFoundException;
+import jakarta.validation.Valid;
 
 @RestController
 public class MainController {
@@ -24,7 +25,7 @@ public class MainController {
     private JwtService jwt;
 
     @PostMapping("/register")
-public String register(@RequestBody RegisterRequest res) {
+public String register(@Valid @RequestBody RegisterRequest res) {
 
     try {
 
@@ -48,7 +49,7 @@ public String register(@RequestBody RegisterRequest res) {
     }
 }
    @PostMapping("/public/login")
-   public String login(@RequestBody LoginRequest lo)
+   public String login(@Valid @RequestBody LoginRequest lo)
    {
     String email=lo.getEmail();
     String password=lo.getPassword();
