@@ -2,8 +2,8 @@ package com.example.taskmanagementsystem.dto;
 public class ErrorResponse
 {
     private String message;
-    private String status;
-    public ErrorResponse(String message,String status){
+    private int status;
+    public ErrorResponse(String message,int status){
         this.message=message;
         this.status=status;
     }
@@ -11,7 +11,7 @@ public class ErrorResponse
     {
         return this.message;
     }
-    public String getStatus()
+    public int getStatus()
     {
         return this.status;
     }

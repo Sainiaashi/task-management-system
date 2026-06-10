@@ -1,5 +1,5 @@
-package com.examle.taskmanagementsystem.exception;
-public UserNotFoundException extends RuntimeException
+package com.example.taskmanagementsystem.exception;
+public class UserNotFoundException extends RuntimeException
 {
     public UserNotFoundException(String msg)
     {

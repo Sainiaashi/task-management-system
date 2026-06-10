@@ -16,16 +16,16 @@ public class GlobalExceptionHandler
         );
         return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
     }
-    @ExcepitonHandler(UserNotFoundException.class)
+    @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleusernotfound(UserNotFoundException ex)
     {
         ErrorResponse error=new ErrorResponse(ex.getMessage(),404);
-        return new ResponseEntity<>(error,HttpStatus.Not_Found);
+        return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
     }
-    @ExpectionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handlerror(Exception ex)
     {
         ErrorResponse error=new ErrorResponse(ex.getMessage(),500);
-        return new ResponseEntity<>(error,httpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

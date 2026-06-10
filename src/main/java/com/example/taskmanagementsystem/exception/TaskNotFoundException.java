@@ -1,5 +1,5 @@
 package com.example.taskmanagementsystem.exception;
-public class TaskNotFoundExcpection extends RuntimeException
+public class TaskNotFoundException extends RuntimeException
 {
     public TaskNotFoundException(String msg)
     {

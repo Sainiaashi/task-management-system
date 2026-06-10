@@ -8,6 +8,8 @@ import com.example.taskmanagementsystem.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.taskmanagementsystem.dto.CreateTask;
+import com.example.taskmanagementsystem.exception.UserNotFoundException;
+import com.example.taskmanagementsystem.exception.TaskNotFoundException;
 @Service
 public class TaskService
 {
@@ -22,7 +24,7 @@ public class TaskService
                  .getAuthentication()
                  .getName();
 
-    User currentuser= userrepo.findByEmail(email);
+    User currentuser= userrepo.findByEmail(email).orElseThrow(()->new UserNotFoundException("user not found"));
     Task task=taskrepo.findById(id).orElseThrow(
         ()->new TaskNotFoundException ("task not found")
     );
@@ -38,7 +40,7 @@ public class TaskService
                   .getContext()
                   .getAuthentication()
                   .getName();
-    User currentuser=userrepo.findByEmail(email);
+    User currentuser=userrepo.findByEmail(email).orElseThrow(()->new UserNotFoundException("user not found"));
     Task task=new Task();
     task.setTitle(ct.getTitle());
     task.setDescription(ct.getDescription());

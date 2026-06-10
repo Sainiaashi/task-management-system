@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.taskmanagementsystem.security.JwtService;
+import com.example.taskmanagementsystem.exception.UserNotFoundException;
+import com.example.taskmanagementsystem.exception.TaskNotFoundException;
 
 @RestController
 public class MainController {
@@ -51,7 +53,7 @@ public String register(@RequestBody RegisterRequest res) {
     String email=lo.getEmail();
     String password=lo.getPassword();
     User user=new User();
-    user=userRepository.findByEmail(email).orELseThrow(()->new UserNotFoundException("user not found"));
+    user=userRepository.findByEmail(email).orElseThrow(()->new UserNotFoundException("user not found"));
     
         boolean passmatch=passwordEncoder.matches(password,user.getPassword());
         if(passmatch)
@@ -60,7 +62,7 @@ public String register(@RequestBody RegisterRequest res) {
             return token;
         }
         else{
-            return throw new Exception("INVALID_PASSWORD");
+             throw new RuntimeException("INVALID_PASSWORD");
         }
    } 
 
