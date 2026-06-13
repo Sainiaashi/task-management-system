@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import com.example.taskmanagementsystem.dto.CreateTask;
 import com.example.taskmanagementsystem.exception.UserNotFoundException;
 import com.example.taskmanagementsystem.exception.TaskNotFoundException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class TaskService
 {
+    private static final Logger log= LoggerFactory.getLogger(TaskService.class);
     @Autowired
     private UserRepository userrepo;
     @Autowired
@@ -30,6 +35,7 @@ public class TaskService
     );
     if(!task.getUser().getId().equals(currentuser.getId()))
     {
+        log.warn("user {} attempts to access task {}",currentuser.getEmail(),task.getId());
         throw new RuntimeException("Access denied");
     }
     return task;

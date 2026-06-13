@@ -80,6 +80,10 @@ public class Securityconfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/public/**").permitAll()
+                .requestMatchers(
+        "/swagger-ui/**",
+        "/v3/api-docs/**"
+).permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
