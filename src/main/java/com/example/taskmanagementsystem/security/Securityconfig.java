@@ -81,6 +81,9 @@ public class Securityconfig {
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/public/**").permitAll()
                 .requestMatchers(
+    "/actuator/**"
+).permitAll()
+                .requestMatchers(
         "/swagger-ui/**",
         "/v3/api-docs/**"
 ).permitAll()

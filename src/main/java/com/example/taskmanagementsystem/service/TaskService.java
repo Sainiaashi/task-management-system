@@ -11,8 +11,14 @@ import com.example.taskmanagementsystem.dto.CreateTask;
 import com.example.taskmanagementsystem.exception.UserNotFoundException;
 import com.example.taskmanagementsystem.exception.TaskNotFoundException;
 
+//pagination
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 @Service
 public class TaskService
@@ -54,4 +60,17 @@ public class TaskService
     task.setUser(currentuser);
     return taskrepo.save(task);
    }
+
+   public Page<Task> getALLTasks(Pageable pageable)
+   {
+    return taskrepo.findAll(pageable);
+   }
+    public Page<Task> gettaskbystatus(String status,Pageable pageable)
+    {
+        return taskrepo.findByStatus(status,pageable);
+    }
+    public Page<Task> getbytitle(String keyword ,Pageable pageable)
+    {
+        return taskrepo.findByTitleContaining(keyword,pageable);
+    }
 }
