@@ -25,7 +25,7 @@ void testRegisterEndpoint() throws Exception {
     String json = """
     {
       "name":"Test User1",
-      "email":"test1234562@gmail.com",
+      "email":"test123456213@gmail.com",
       "password":"123456",
       "role":"USER"
     }
