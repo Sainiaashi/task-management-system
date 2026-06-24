@@ -22,14 +22,17 @@ class RegisterIntegrationTest
 @Test
 void testRegisterEndpoint() throws Exception {
 
-    String json = """
-    {
-      "name":"Test User1",
-      "email":"test123456213@gmail.com",
-      "password":"123456",
-      "role":"USER"
-    }
-    """;
+    String email = "test" + System.currentTimeMillis() + "@gmail.com";
+
+String json = """
+{
+  "name":"Test User",
+  "email":"%s",
+  "password":"123456",
+  "role":"USER"
+}
+""".formatted(email);
+
 
     mockMvc.perform(
             post("/register")
